@@ -1,4 +1,4 @@
-package org.nkola.potholehunter;
+package org.nkola.potholehunter.android;
 
 import android.app.Application;
 

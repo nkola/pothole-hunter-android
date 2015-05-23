@@ -1,8 +1,9 @@
-package org.nkola.potholehunter;
+package org.nkola.potholehunter.android;
 
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import org.nkola.potholehunter.android.R;
 
 public class SplashActivity extends Activity {
     @Override
@@ -16,7 +17,7 @@ public class SplashActivity extends Activity {
             protected Void doInBackground(Void... params) {
                 try {
                     Thread.sleep(2000);
-                    startHunterActivity()
+                    startHunterActivity();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

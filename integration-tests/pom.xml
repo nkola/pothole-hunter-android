@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.nkola</groupId>
+        <artifactId>pothole-hunter-parent</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <groupId>org.nkola</groupId>
+    <artifactId>pothole-hunter-integration-tests</artifactId>
+    <version>1.0.0</version>
+    <packaging>apk</packaging>
+    <name>Pothole Hunter - Integration Tests</name>
+
+    <properties>
+        <pothunter.version>${project.version}</pothunter.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>android-test</artifactId>
+            <version>4.1.1.4</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.nkola</groupId>
+            <artifactId>pothole-hunter-android</artifactId>
+            <type>apk</type>
+            <version>${pothunter.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.nkola</groupId>
+            <artifactId>pothole-hunter-android</artifactId>
+            <type>jar</type>
+            <version>${pothunter.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>android-test-kit</groupId>
+            <artifactId>espresso</artifactId>
+            <version>1.1-bundled</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.spoon</groupId>
+            <artifactId>spoon-client</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>com.simpligility.maven.plugins</groupId>
+                <artifactId>android-maven-plugin</artifactId>
+                <configuration>
+                    <test>
+                        <!--<skip>true|false|auto</skip> -->
+                        <instrumentationPackage>org.nkola.pothunter.android.integrationtests</instrumentationPackage>
+                        <instrumentationRunner>
+                            com.google.android.apps.common.testing.testrunner.GoogleInstrumentationTestRunner
+                        </instrumentationRunner>
+                        <!--<debug>true|false</debug> -->
+                        <!--<coverage>true|false</coverage> -->
+                        <!--<logonly>true|false</logonly> avd -->
+                        <!--<testsize>small|medium|large</testsize> -->
+                        <createReport>true</createReport>
+                        <!--<classes> -->
+                        <!--<class>your.package.name.YourTestClass</class> -->
+                        <!--</classes> -->
+                        <!--<packages> -->
+                        <!--<package>your.package.name</package> -->
+                        <!--</packages> -->
+                    </test>
+                    <sdk>
+                        <platform>19</platform>
+                    </sdk>
+                </configuration>
+                <extensions>true</extensions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.squareup.spoon</groupId>
+                <artifactId>spoon-maven-plugin</artifactId>
+                <version>1.1.2</version>
+                <configuration>
+                    <title>Spoon Sample App</title>
+                    <debug>true</debug>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
