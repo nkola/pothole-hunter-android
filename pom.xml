@@ -1,21 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.pothunter.ug</groupId>
-    <artifactId>android-quickstart</artifactId>
-    <version>1.0.6</version>
-    <packaging>jar</packaging>
+    <groupId>org.nkola</groupId>
+    <artifactId>pothole-hunter-android</artifactId>
+    <version>1.0.0</version>
+    <packaging>apk</packaging>
 
-    <name>android-quickstart</name>
-    <url>http://maven.apache.org</url>
+    <name>pothole-hunter Android Client</name>
+    <url>http://www.nkola.com/projects/pothole-hunter</url>
+    <description>
+        Mobile application that lets citizens collect information about potholes and share this information
+        with the city authorities so that they can be fixed
+    </description>
+
+    <issueManagement>
+        <url>https://github.com/nkola/pothole-hunter-tracker/issues</url>
+        <system>github issues</system>
+    </issueManagement>
+    <scm>
+        <url>https://github.com/nkola/pothole-hunter-android.git</url>
+        <connection>scm:git:git@github.com:nkola/pothole-hunter-android.git</connection>
+        <developerConnection>scm:git:git@github.com:nkola/pothole-hunter-android.git</developerConnection>
+    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <android.sdk.path>${env.ANDROID_HOME}</android.sdk.path>
+        <platform.version>15</platform.version>
     </properties>
 
     <dependencies>
-
         <dependency>
             <groupId>com.google.android</groupId>
             <artifactId>android</artifactId>
@@ -31,20 +47,25 @@
     </dependencies>
     <build>
         <finalName>${project.artifactId}</finalName>
-        <sourceDirectory>src</sourceDirectory>
         <plugins>
             <plugin>
-                <groupId>com.simpligility.maven.plugin</groupId>
+                <groupId>com.simpligility.maven.plugins</groupId>
                 <artifactId>android-maven-plugin</artifactId>
                 <version>4.1.1</version>
+                <extensions>true</extensions>
                 <configuration>
-                    <run>
-                        <debug>true</debug>
-                    </run>
                     <sdk>
-                        <platform>19</platform>
+                        <platform>${platform.version}</platform>
                     </sdk>
-                    <undeployBeforeDeploy>true</undeployBeforeDeploy>
+                    <dex>
+                        <jvmArguments>
+                            <jvmArgument>-Xms512m</jvmArgument>
+                            <jvmArgument>-Xmx1024m</jvmArgument>
+                        </jvmArguments>
+                    </dex>
+                    <zipalign>
+                        <skip>false</skip>
+                    </zipalign>
                 </configuration>
             </plugin>
             <plugin>
