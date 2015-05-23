@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.nkola</groupId>
+        <artifactId>pothole-hunter-parent</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <groupId>org.nkola</groupId>
+    <artifactId>pothole-hunter-android</artifactId>
+    <version>1.0.0</version>
+    <packaging>apk</packaging>
+    <name>pothole-hunter Android Client</name>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <android.sdk.path>${env.ANDROID_HOME}</android.sdk.path>
+        <platform.version>15</platform.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>android</artifactId>
+            <version>4.1.1.4</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>com.simpligility.maven.plugins</groupId>
+                <artifactId>android-maven-plugin</artifactId>
+                <version>${android.plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <sdk>
+                        <platform>${platform.version}</platform>
+                    </sdk>
+                    <dex>
+                        <jvmArguments>
+                            <jvmArgument>-Xms512m</jvmArgument>
+                            <jvmArgument>-Xmx1024m</jvmArgument>
+                        </jvmArguments>
+                    </dex>
+                    <zipalign>
+                        <skip>false</skip>
+                    </zipalign>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <compilerVersion>1.6</compilerVersion>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
