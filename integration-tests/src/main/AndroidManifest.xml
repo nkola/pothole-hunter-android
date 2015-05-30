@@ -13,7 +13,7 @@
     </application>
 
     <instrumentation
-            android:name="com.google.android.apps.common.testing.testrunner.GoogleInstrumentationTestRunner"
+            android:name="android.support.test.runner.AndroidJUnitRunner"
             android:targetPackage="org.nkola.potholehunter.android"/>
 
 </manifest>
