@@ -59,3 +59,4 @@ target/
 
 # IDE files
 *iml
+*gen-external-apklibs/
